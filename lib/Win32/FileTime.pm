@@ -7,7 +7,7 @@ use Win32API::File qw/ :ALL /;
 use strict;
 use vars qw/ $VERSION /;
 
-$VERSION = '0.03';
+$VERSION = '0.04';
 
 
 sub Access {
@@ -110,6 +110,8 @@ sub new {
     );
     $self->{ uc $_ } = $filetime{ $_ } for keys %filetime;
 
+    CloseHandle( $self->{'HFILE'} );
+
     bless $self, $class;
     return $self;
 }
@@ -200,7 +202,7 @@ order defined above.
 
 =head1 VERSION
 
-0.03
+0.04
 
 =head1 AUTHOR
 
